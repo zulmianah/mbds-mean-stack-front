@@ -1,18 +1,60 @@
-<form ngForm #formAssignment class="form" (submit)="onSubmit($event); formAssignment.reset();">
-  <mat-form-field>
-    <input matInput placeholder="Nom du devoir" required [(ngModel)]="nom" name="nom">
-  </mat-form-field>
+<!-- <main class="container">
+  <div class="row layout-top-spacing">
+    <div id="tableDark" class="col-lg-12 col-12 layout-spacing">
+      <div class="statbox widget box box-shadow">
+        <div class="widget-header">title</div>
+        <div class="widget-content widget-content-area">content</div>
+      </div>
+    </div>
+  </div>
+</main> -->
+<main class="container">
+  <div class="row layout-top-spacing">
+    <div id="tableDark" class="col-lg-12 col-12 layout-spacing">
+      <div class="statbox widget box box-shadow">
+        <div class="widget-header">title</div>
+        <div class="widget-content widget-content-area">
+          <form
+            ngForm
+            #formAssignment
+            class="form"
+            (submit)="onSubmit($event); formAssignment.reset()"
+          >
+            <mat-form-field>
+              <input
+                class="form-control mb-4"
+                matInput
+                placeholder="Nom du devoir"
+                required
+                [(ngModel)]="nom"
+                name="nom"
+              />
+            </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Choisissez une date</mat-label>
-    <input matInput [matDatepicker]="picker" required [(ngModel)]="dateDeRendu" name="date">
+            <mat-form-field appearance="fill">
+              <mat-label>Choisissez une date</mat-label>
+              <input
+                matInput
+                [matDatepicker]="picker"
+                required
+                [(ngModel)]="dateDeRendu"
+                name="date"
+              />
 
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
 
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
 
-  <button mat-stroked-button color="primary">
-    Ajouter un devoir
-  </button>
-</form>
+            <button mat-stroked-button color="primary">
+              Ajouter un devoir
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

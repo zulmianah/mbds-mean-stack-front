@@ -1,44 +1,105 @@
 <main class="container">
-  <a routerLink="/add" class="ajouterBtn">
-    <button mat-flat-button color="accent">
-      Ajouter un assignment
-    </button>
-  </a>
-  <h1>Liste des assignments</h1>
-  <mat-divider></mat-divider>
-  <nav>
-    <button mat-raised-button color="primary" (click)="premierePage()">
-      Première
-    </button>
-    <button mat-raised-button color="primary" [disabled]="!hasPrevPage" (click)="pagePrecedente()">
-      Prev
-    </button>
-    <button mat-raised-button color="primary" [disabled]="!hasNextPage" (click)="pageSuivante()">
-      Suiv
-    </button>
-    <button mat-raised-button color="primary" (click)="dernierePage()">
-      Dernière
-    </button>
-  </nav>
+  <div class="row layout-top-spacing">
+    <div id="tableDark" class="col-lg-12 col-12 layout-spacing">
+      <div class="statbox widget box box-shadow">
+        <div class="widget-header"></div>
+        <div class="widget-content widget-content-area">
+          <div class="row">
+            <div class="col-xl-6 col-md-6 col-sm-6 col-12">
+              <h4>Liste des assignments</h4>
+            </div>
+            <div class="col-xl-6 col-md-6 col-sm-6 col-12 text-right">
+              <a routerLink="/add" class="ajouterBtn">
+                <button mat-flat-button color="accent">
+                  Ajouter un assignment
+                </button>
+              </a>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-bordered mb-4">
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>A rendre le</th>
+                  <th>Rendu</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let a of assignments">
+                  <td>{{ a.nom }}</td>
+                  <td>
+                    {{ a.dateDeRendu | date }}
+                  </td>
+                  <td>
+                    <a routerLink="/assignment/{{ a.id }}">
+                      <mat-list-item>
+                        <mat-divider></mat-divider>
 
-  <mat-list *ngFor="let a of assignments">
-    <nav>
-      <a routerLink="/assignment/{{a.id}}">
-        <h3 mat-subheader>{{a.dateDeRendu | date}}</h3>
-        <mat-list-item>
-          <mat-divider></mat-divider>
-
-          <p *ngIf="a.rendu; else nonsoumis" appRendu>
-            {{a.nom}}, rendu par l'élève.
-          </p>
-          <ng-template #nonsoumis>
-            <p appNonRendu>
-              {{a.nom}}, non encore rendu par l'élève.
-            </p>
-          </ng-template>
-
-        </mat-list-item>
-      </a>
-    </nav>
-  </mat-list>
+                        <p *ngIf="a.rendu; else nonsoumis" appRendu>
+                          Rendu par l'élève.
+                        </p>
+                        <ng-template #nonsoumis>
+                          <p appNonRendu>Non rendu par l'élève.</p>
+                        </ng-template>
+                      </mat-list-item>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div
+              class="dt--bottom-section d-sm-flex justify-content-sm-between text-center"
+            >
+              <div class="dt--pages-count mb-sm-0 mb-3">
+                <div
+                  class="dataTables_info"
+                  id="zero-config_info"
+                  role="status"
+                  aria-live="polite"
+                ></div>
+              </div>
+              <div class="dt--pagination">
+                <div
+                  class="dataTables_paginate paging_simple_numbers"
+                  id="zero-config_paginate"
+                >
+                  <ul class="pagination">
+                    <li class="paginate_button page-item active">
+                      <button mat-raised-button (click)="premierePage()">
+                        Première
+                      </button>
+                    </li>
+                    <li class="paginate_button page-item active">
+                      <button
+                        mat-raised-button
+                        [disabled]="!hasPrevPage"
+                        (click)="pagePrecedente()"
+                      >
+                        Prev
+                      </button>
+                    </li>
+                    <li class="paginate_button page-item active">
+                      <button
+                        mat-raised-button
+                        [disabled]="!hasNextPage"
+                        (click)="pageSuivante()"
+                      >
+                        Suiv
+                      </button>
+                    </li>
+                    <li class="paginate_button page-item">
+                      <button mat-raised-button (click)="dernierePage()">
+                        Dernière
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </main>
