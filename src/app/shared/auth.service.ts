@@ -1,34 +1,38 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
 export class AuthService {
-  loggedIn = false;
-  admin = false;
+    loggedIn = false;
+    admin = false;
 
-  constructor() {}
+    constructor() {
+    }
 
-  logIn(login, password) {
-    // typiquement, acceptera en paramètres un login et un password
-    // vérifier qu'ils sont ok, et si oui, positionner la propriété loggedIn à true
-    // si login/password non valides, positionner à false;
+    logIn(login, password): void {
+        // typiquement, acceptera en paramètres un login et un password
+        // vérifier qu'ils sont ok, et si oui, positionner la propriété loggedIn à true
+        // si login/password non valides, positionner à false;
 
-    if (login === 'admin') this.admin = true;
+        if (login === 'admin') {
+            this.admin = true;
+        }
 
-    this.loggedIn = true;
-  }
+        this.loggedIn = true;
+    }
 
-  logOut() {
-    this.loggedIn = false;
-    this.admin = false;
-  }
+    logOut(): void {
+        this.loggedIn = false;
+        this.admin = false;
+    }
 
-  // exemple d'utilisation :
-  // isAdmin.then(admin => { console.log("administrateur : " + admin);})
-  isAdmin() {
-    return new Promise((resolve, reject) => {
-      resolve(this.admin);
-    });
-  }
+    // exemple d'utilisation :
+    // isAdmin.then(admin => { console.log("administrateur : " + admin);})
+    // tslint:disable-next-line:typedef
+    isAdmin() {
+        return new Promise((resolve, reject) => {
+            resolve(this.admin);
+        });
+    }
 }
