@@ -12,4 +12,7 @@ export class AppComponent {
     constructor() {
     }
 
+    isLoged(): boolean {
+        return localStorage.getItem('token') !== null;
+    }
 }
