@@ -57,15 +57,26 @@ export class AuthService {
     }*/
 
     logOut(): void {
-        this.loggedIn = false;
-        this.admin = false;
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
     }
 
     // exemple d'utilisation :
     // isAdmin.then(admin => { console.log("administrateur : " + admin);})
-    isAdmin(): Promise<any> {
+    isAdmin(): Promise<boolean> {
         return new Promise((resolve, reject) => {
-            resolve(this.admin);
+            const user = this.getUser();
+            if (user != null) {
+                const admin = user.role === 'Admin';
+                resolve(admin);
+            } else {
+                resolve(false);
+            }
         });
+    }
+
+    isLoged(): boolean {
+        const token = localStorage.getItem('token');
+        return token !== null;
     }
 }

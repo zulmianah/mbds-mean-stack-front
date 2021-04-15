@@ -41,6 +41,12 @@ export class NavbarComponent implements OnInit {
     }
 
     isLoged(): boolean {
-        return false;
+        return this.authService.isLoged();
+    }
+
+    logOut(): void {
+        console.log('logOut');
+        this.authService.logOut();
+        this.router.navigate(['/home']).then();
     }
 }
