@@ -27,32 +27,21 @@ import {AuthGuard} from './shared/auth.guard';
 import {HttpClientModule} from '@angular/common/http';
 import {FooterComponent} from './footer/footer.component';
 import {NavbarComponent} from './navbar/navbar.component';
+import {LoginComponent} from './login/login/login.component';
 
 const routes: Routes = [
+    {path: 'login', component: LoginComponent},
     {
         // indique que http://localhost:4200 sans rien ou avec un "/" à la fin
         // doit afficher le composant AssignmentsComponent (celui qui affiche la liste)
         path: '',
         component: AssignmentsComponent,
     },
-    {
-        // idem avec  http://localhost:4200/home
-        path: 'home',
-        component: AssignmentsComponent,
-    },
-    {
-        path: 'add',
-        component: AddAssignmentComponent,
-    },
-    {
-        path: 'assignment/:id',
-        component: AssignmentDetailComponent,
-    },
-    {
-        path: 'assignment/:id/edit',
-        component: EditAssigmentComponent,
-        canActivate: [AuthGuard],
-    },
+    {        // idem avec  http://localhost:4200/home
+        path: 'home', component: AssignmentsComponent
+    }, {path: 'add', component: AddAssignmentComponent},
+    {path: 'assignment/:id', component: AssignmentDetailComponent},
+    {path: 'assignment/:id/edit', component: EditAssigmentComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
@@ -66,6 +55,7 @@ const routes: Routes = [
         EditAssigmentComponent,
         FooterComponent,
         NavbarComponent,
+        LoginComponent,
     ],
     imports: [
         BrowserModule,
